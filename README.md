@@ -36,49 +36,7 @@ The experience combines emotional storytelling with immersive UI design to creat
 
 ---
 
-# 🎥 Demo Preview
 
-> **Replace the placeholders below with your GIFs.**
-
-## 🏡 Entering the Home
-
-```
-(Add GIF Here)
-```
-
----
-
-## 🚶 Exploring the Cottage
-
-```
-(Add GIF Here)
-```
-
----
-
-## 🦋 Discovering a Memory
-
-```
-(Add GIF Here)
-```
-
----
-
-## 📤 Uploading a Memory
-
-```
-(Add GIF Here)
-```
-
----
-
-## 🖼 Viewing Memories
-
-```
-(Add GIF Here)
-```
-
----
 
 # 💡 The Problem
 
@@ -255,7 +213,7 @@ The interface almost disappears, allowing emotions to become the primary focus.
 ## Home Exterior
 
 ```
-(Add Screenshot)
+assets/home.png
 ```
 
 ---
@@ -263,7 +221,7 @@ The interface almost disappears, allowing emotions to become the primary focus.
 ## Living Room
 
 ```
-(Add Screenshot)
+assets/room.png
 ```
 
 ---
@@ -271,7 +229,7 @@ The interface almost disappears, allowing emotions to become the primary focus.
 ## Memory Interaction
 
 ```
-(Add Screenshot)
+assets/memory.png
 ```
 
 ---
@@ -279,18 +237,11 @@ The interface almost disappears, allowing emotions to become the primary focus.
 ## Upload Memory
 
 ```
-(Add Screenshot)
+assets/upload.png
 ```
 
 ---
 
-## Memory Viewer
-
-```
-(Add Screenshot)
-```
-
----
 
 # 🔮 Future Scope
 
