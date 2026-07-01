@@ -357,7 +357,13 @@ function Lantern({ position, intensity = 2.2, height = 2.8, poleR = 0.04 }) {
         <Cylinder args={[0.13, 0.09, 0.08, 8]} position={[0, -0.2, 0]}>
           <meshStandardMaterial color="#1a0e06" roughness={0.9} />
         </Cylinder>
-        <pointLight ref={glowRef} color={LANTERN_COL} intensity={intensity} distance={7} decay={2} castShadow />
+        {/* castShadow removed: point-light shadows render 6 cube faces
+            each, and with 6 lanterns in the scene this was the single
+            most expensive shadow cost. The lantern glow itself (light +
+            emissive material) is unchanged; only its own shadow-casting
+            is disabled — the directional light still casts the primary
+            shadows everywhere. */}
+        <pointLight ref={glowRef} color={LANTERN_COL} intensity={intensity} distance={7} decay={2} />
       </group>
     </group>
   );
@@ -1221,7 +1227,11 @@ function Fireplace({ position }) {
           <meshStandardMaterial color="#ffcc66" emissive="#ffcc66" emissiveIntensity={5} transparent opacity={0.8} />
         </Sphere>
       </group>
-      <pointLight ref={lightRef} color={FIRE_COL} intensity={6} distance={6.5} decay={2} position={[0, 0.5, 0.3]} castShadow />
+      {/* castShadow removed here too, same reasoning as the lanterns —
+          the flicker/glow is unaffected, only the (barely visible, since
+          the firebox is a small recessed opening) shadow cast by this
+          light is disabled. */}
+      <pointLight ref={lightRef} color={FIRE_COL} intensity={6} distance={6.5} decay={2} position={[0, 0.5, 0.3]} />
     </group>
   );
 }
@@ -1703,7 +1713,13 @@ function FirstPersonController({ active, doorOpen, memories, onToggleDoor, onLoc
         const anchor = MEMORY_ANCHORS[mem.location];
         if (!anchor) continue;
         const [ax, ay, az] = anchor.pos;
-        const dist = camera.position.distanceTo(new THREE.Vector3(ax, ay, az));
+        // Manual distance calc — avoids allocating a new THREE.Vector3 every
+        // frame for every memory anchor (was firing 60x/sec regardless of
+        // player movement, causing steady GC pressure / periodic stutter).
+        const dx = camera.position.x - ax;
+        const dy = camera.position.y - ay;
+        const dz = camera.position.z - az;
+        const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
         if (dist < anchor.range && dist < closestDist) {
           closestDist = dist;
           closest = mem.id;
