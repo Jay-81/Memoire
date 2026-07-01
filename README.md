@@ -212,33 +212,32 @@ The interface almost disappears, allowing emotions to become the primary focus.
 
 ## Home Exterior
 
-```
+
 ![Home Exterior](assets/home.png)
-```
+
 
 ---
 
 ## Living Room
 
-```
+
 ![Living Room](assets/room.png)
-```
+
 
 ---
 
 ## Memory Interaction
 
-```
+
 ![Memory Interaction](assets/memory.png)
-```
+
 
 ---
 
 ## Upload Memory
 
-```
 ![Upload Memory](assets/upload.png)
-```
+
 
 ---
 
